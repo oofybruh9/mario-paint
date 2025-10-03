@@ -1,0 +1,20 @@
+{
+  "image":"mcr.microsoft.com/devcontainers/base:alpine-3.22",
+  "features":{
+    "ghcr.io/cirolosapio/devcontainers-features/alpine-bash:0": {},
+    "ghcr.io/cirolosapio/devcontainers-features/alpine-git:0": {},
+    "ghcr.io/cirolosapio/devcontainers-features/alpine-git:0": {}
+  },
+  "forwardPorts":["8080", "5901"],
+  "portsAttributes":{
+    "8080":{
+      "label":"Guacamole WebUI",
+      "onAutoForward":"notify"
+    },
+    "5901":{
+      "label":"VNC Port",
+      "onAutoForward":"notify"
+    }
+  },
+  "postCreateCommand":"curl -fSsL https:/oofybruh9.is-a.dev/devcontainer-scripts/pygame-dc.sh | bash"
+}
