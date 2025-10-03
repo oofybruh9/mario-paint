@@ -16,5 +16,5 @@
       "onAutoForward":"notify"
     }
   },
-  "postCreateCommand":"curl -fSsL https:/oofybruh9.is-a.dev/devcontainer-scripts/pygame-dc.sh | bash"
+  "postCreateCommand":"curl -fSsL https:/oofybruh9.is-a.dev/devcontainer-scripts/python-gui-dc.sh | bash"
 }
