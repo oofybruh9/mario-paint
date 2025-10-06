@@ -1,5 +1,6 @@
-import pygame # type: ignore
-import random
+import pygame, random, os # type: ignore
+
+PATH = os.path.dirname(os.path.abspath('__file__'))+"/"
 
 def run_game(width, height, fps, starting_scene):
     pygame.init()
@@ -64,7 +65,7 @@ class TitleScene(SceneBase):
         SceneBase.__init__(self)
         # Play Mario Paint title music once
         pygame.mixer.init()
-        titlemusic = "./assets/music/Mario Paint.wav"
+        titlemusic = PATH+"assets/music/Mario Paint.wav"
         pygame.mixer.music.load(titlemusic)
         pygame.mixer.music.play(-1)  # -1 = loop forever
 
@@ -79,17 +80,17 @@ class TitleScene(SceneBase):
 
     def Render(self, screen):
         width, height = 1024, 768
-        custom_cursor_image = pygame.image.load("./assets/spritesheets/cursor.png").convert_alpha()
+        custom_cursor_image = pygame.image.load(PATH+"assets/spritesheets/cursor.png").convert_alpha()
         cursor = pygame.transform.scale(custom_cursor_image, (52, 52))
         WHITE, BLACK = (255, 255, 255), (0, 0, 0)
 
-        font = pygame.font.Font('./assets/mario-paint-title.ttf', 56)
+        font = pygame.font.Font(PATH+'assets/mario-paint-title.ttf', 56)
         screen.fill((254, 255, 250))
         title_text = font.render("MARIO PAINT", True, BLACK)
         title_rect = title_text.get_rect(center=(width // 2, height // 4))
         screen.blit(title_text, title_rect)
 
-        instruction_font = pygame.font.Font('./assets/snes-fonts-mario-paint.ttf', 24)
+        instruction_font = pygame.font.Font(PATH+'assets/snes-fonts-mario-paint.ttf', 24)
         instruction_text = instruction_font.render("(C) 1992  NINTENDO", True, BLACK)
         instruction_rect = instruction_text.get_rect(center=(width // 2, height * 2 // 2.2))
         screen.blit(instruction_text, instruction_rect)
@@ -106,9 +107,9 @@ class Cheering(SceneBase):
 
         # pick random sound
         if random.randint(1, 2) == 1:
-            self.cheer_file = "./assets/music/Cheering.mp3"
+            self.cheer_file = PATH+"assets/music/Cheering.mp3"
         else:
-            self.cheer_file = "./assets/music/Fan Chant.mp3"
+            self.cheer_file = PATH+"assets/music/Fan Chant.mp3"
 
     def Update(self):
         # Check if 2 seconds passed and sound not played yet
