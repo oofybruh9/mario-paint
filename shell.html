@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Mario Paint</title>
+    <!-- Pixelify Sans from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #f0f0ff;
+            font-family: 'Pixelify Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        header {
+            width: 100%;
+            background: linear-gradient(to right, #ffcc66, #ff99cc, #99ccff);
+            padding: 10px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            border-bottom: 4px solid #333;
+        }
+
+        #canvas-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            background: #fff;
+            border: 6px solid #333;
+            border-radius: 12px;
+            box-shadow: 4px 4px 0 #999;
+            padding: 10px;
+            width: 50%;
+            max-width: 100vw;
+            /* never overflow */
+        }
+
+        /* Responsive 4:3 Canvas */
+        #canvas {
+            aspect-ratio: 4 / 3;
+            width: 100%;
+            max-width: 1920px;
+            /* cap for large screens */
+            background: #eee;
+            border: 4px solid #555;
+            image-rendering: pixelated;
+            display: block;
+        }
+
+        #toolbar {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .tool-btn {
+            padding: 8px 14px;
+            border-radius: 8px;
+            background: #ffdd88;
+            border: 2px solid #333;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 2px 2px 0 #777;
+            transition: transform 0.1s ease, background 0.2s ease;
+            font-family: 'Pixelify Sans', sans-serif;
+        }
+
+        .tool-btn:hover {
+            transform: translateY(-2px);
+            background: #ffeeaa;
+        }
+    </style>
+</head>
+
+<body>
+    <header>🎨 Mario Paint (powered by PyGame and Emscripten) 🎵</header>
+    <div id="canvas-container">
+        <canvas id="canvas"></canvas>
+        <div id="toolbar">
+            <button class="tool-btn" onclick="Module.requestFullscreen()">🖥️ Fullscreen</button>
+            <button class="tool-btn" onclick="Module.ccall('save_game')">💾 Save</button>
+            <button class="tool-btn" onclick="Module.ccall('load_game')">📂 Load</button>
+            <button class="tool-btn" onclick="location.reload()">🔄 Restart</button>
+        </div>
+    </div>
+    {{{ SCRIPT }}}
+</body>
+
+</html>
